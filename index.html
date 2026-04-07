@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trump Final Warning</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: #ff0000;
+            font-size: 3rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #countdown {
+            display: flex;
+            gap: 20px;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .warning-text {
+            margin-top: 40px;
+            color: #ff0000;
+            font-size: 1.2rem;
+            border: 2px solid #ff0000;
+            padding: 10px 20px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Trump's Last Ultimatum</h1>
+
+    <div id="countdown">
+        <div class="time-box"><span id="days">00</span><span class="label">Dny</span></div>
+        <div class="time-box"><span id="hours">00</span><span class="label">Hodin</span></div>
+        <div class="time-box"><span id="minutes">00</span><span class="label">Minut</span></div>
+        <div class="time-box"><span id="seconds">00</span><span class="label">Sekund</span></div>
+    </div>
+
+    <div class="warning-text">FINAL WARNING</div>
+
+    <script>
+        // Nastavte cílové datum zde
+        const targetDate = new Date("May 1, 2026 00:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "ULTIMATUM EXPIRED";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
